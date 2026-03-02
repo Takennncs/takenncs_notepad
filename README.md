@@ -46,7 +46,7 @@ A modern, feature-rich notepad system for FiveM (QBCore) with ox_inventory, ox_l
 ## SQL
 
 ```
-CREATE TABLE IF NOT EXISTS `sticky_notes` (
+CREATE TABLE IF NOT EXISTS `notepad_notes` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `identifier` varchar(50) NOT NULL,
     `slot` int(11) NOT NULL,
@@ -59,5 +59,6 @@ CREATE TABLE IF NOT EXISTS `sticky_notes` (
     UNIQUE KEY `unique_slot` (`identifier`, `slot`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ````
+
 
 
