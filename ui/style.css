@@ -1,0 +1,356 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.note-container {
+    width: 800px;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: #1e1e2f;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    animation: popIn 0.3s ease-out;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.note-header {
+    padding: 20px 25px;
+    background: #2a2a3c;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #3a3a4c;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-left i {
+    font-size: 24px;
+    color: #6d5dfc;
+}
+
+.header-left h2 {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.header-right {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.header-right .btn {
+    background: #3a3a4c;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.header-right .btn:hover {
+    background: #4a4a5c;
+    transform: translateY(-2px);
+}
+
+.btn-save {
+    background: #6d5dfc;
+    color: white;
+}
+
+.btn-save:hover {
+    background: #5a4ae0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(109, 93, 252, 0.3);
+}
+
+.btn-cancel {
+    background: #3a3a4c;
+    color: #fff;
+}
+
+.btn-cancel:hover {
+    background: #4a4a5c;
+}
+
+.btn-lock {
+    background: #3a3a4c;
+    color: #fff;
+}
+
+.btn-lock.locked {
+    background: #ff4757;
+    color: white;
+}
+
+.btn-lock.locked i {
+    transform: rotate(15deg);
+}
+
+.note-title-section {
+    padding: 15px 25px;
+    background: #1e1e2f;
+}
+
+.note-title {
+    width: 100%;
+    padding: 12px 15px;
+    background: #2a2a3c;
+    border: 1px solid #3a3a4c;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.2s;
+}
+
+.note-title:focus {
+    outline: none;
+    border-color: #6d5dfc;
+    box-shadow: 0 0 0 3px rgba(109, 93, 252, 0.1);
+}
+
+.note-title::placeholder {
+    color: #6a6a7c;
+}
+
+.note-toolbar {
+    padding: 10px 25px;
+    background: #2a2a3c;
+    border-top: 1px solid #3a3a4c;
+    border-bottom: 1px solid #3a3a4c;
+}
+
+.ql-toolbar {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+.ql-toolbar button {
+    color: #fff !important;
+}
+
+.ql-toolbar button:hover {
+    color: #6d5dfc !important;
+}
+
+.ql-toolbar .ql-active {
+    color: #6d5dfc !important;
+}
+
+.ql-picker {
+    color: #fff !important;
+}
+
+.ql-picker-options {
+    background: #2a2a3c !important;
+    border-color: #3a3a4c !important;
+}
+
+.note-editor {
+    flex: 1;
+    min-height: 400px;
+    background: #1e1e2f;
+    padding: 0 25px 25px 25px;
+}
+
+.ql-container {
+    border: none !important;
+    background: #2a2a3c;
+    border-radius: 10px;
+    font-size: 15px;
+    height: 100%;
+    min-height: 350px;
+}
+
+.ql-editor {
+    color: #fff;
+    padding: 20px;
+}
+
+.ql-editor.ql-blank::before {
+    color: #6a6a7c;
+    font-style: italic;
+}
+
+.note-footer {
+    padding: 15px 25px;
+    background: #2a2a3c;
+    border-radius: 0 0 20px 20px;
+    border-top: 2px solid #3a3a4c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-left {
+    color: #8a8a9c;
+    font-size: 13px;
+}
+
+.footer-right {
+    display: flex;
+    gap: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #2a2a3c;
+    border-radius: 15px;
+    width: 400px;
+    max-width: 90%;
+    animation: popIn 0.3s ease-out;
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #3a3a4c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    color: #fff;
+    font-size: 18px;
+}
+
+.modal-close {
+    color: #8a8a9c;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.modal-close:hover {
+    color: #fff;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-body input {
+    width: 100%;
+    padding: 12px;
+    background: #1e1e2f;
+    border: 1px solid #3a3a4c;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.modal-body input:focus {
+    outline: none;
+    border-color: #6d5dfc;
+}
+
+.modal-footer {
+    padding: 20px;
+    border-top: 1px solid #3a3a4c;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #2a2a3c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4a4a5c;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #5a5a6c;
+}
+
+.note-container.locked .ql-editor {
+    background: #252536;
+    color: #8a8a9c;
+}
+
+.note-container.locked .note-toolbar button:not(.ql-clean) {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.note-container.locked .note-title {
+    background: #252536;
+    color: #8a8a9c;
+    pointer-events: none;
+}
+
+body {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    background: transparent;
+}
+
+body.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+body.visible .note-container {
+    display: flex !important;
+}
