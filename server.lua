@@ -2,7 +2,7 @@ local QBCore = exports['qb-core']:GetCoreObject()
 
 CreateThread(function()
     MySQL.query([[
-        CREATE TABLE IF NOT EXISTS `sticky_notes` (
+        CREATE TABLE IF NOT EXISTS `notepad_notes` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `identifier` varchar(50) NOT NULL,
             `slot` int(11) NOT NULL,
@@ -27,7 +27,7 @@ RegisterNetEvent('takenncs_notepad:server:saveDocument', function(data)
     if not slot then return end
 
     MySQL.insert([[
-        INSERT INTO sticky_notes (identifier, slot, title, content, locked, last_edited)
+        INSERT INTO notepad_notes (identifier, slot, title, content, locked, last_edited)
         VALUES (?, ?, ?, ?, ?, ?)
         ON DUPLICATE KEY UPDATE
             title = VALUES(title),
@@ -64,7 +64,7 @@ RegisterNetEvent('takenncs_notepad:server:duplicateDocument', function(data)
     local items = exports.ox_inventory:GetItems(src, nil, Config.ItemName)
     if items and #items > 0 then
         local newSlot = items[#items].slot
-        MySQL.insert('INSERT INTO sticky_notes (identifier, slot, title, content, locked, last_edited) VALUES (?, ?, ?, ?, ?, ?)', {
+        MySQL.insert('INSERT INTO notepad_notes (identifier, slot, title, content, locked, last_edited) VALUES (?, ?, ?, ?, ?, ?)', {
             identifier,
             newSlot,
             newTitle,
@@ -91,7 +91,7 @@ RegisterNetEvent('takenncs_notepad:server:loadDocument', function(slot)
     if not slotNum then return end
 
     MySQL.single(
-        'SELECT * FROM sticky_notes WHERE identifier = ? AND slot = ?',
+        'SELECT * FROM notepad_notes WHERE identifier = ? AND slot = ?',
         { identifier, slotNum },
         function(result)
             if result then
