@@ -24,7 +24,7 @@ A modern, feature-rich notepad system for FiveM (QBCore) with ox_inventory, ox_l
 ## 🚀 Installation
 
 1. **Download the resource**
-   - Place `takenncs_stickynotes` in your `resources` folder
+   - Place `takenncs_notepad` in your `resources` folder
 
 2. **Configure ox_inventory**
    - Add the item to your `ox_inventory/data/items.lua`:
@@ -59,4 +59,5 @@ CREATE TABLE IF NOT EXISTS `sticky_notes` (
     UNIQUE KEY `unique_slot` (`identifier`, `slot`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ````
+
 
